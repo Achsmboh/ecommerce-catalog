@@ -1,16 +1,18 @@
+import CardCatalog from '@/components/CardCatalog.vue';
+
 <template>
   <div class="about">
     <LayOut>
       <template v-slot:children>
         <div class="bungkus">
-          <div class="card"></div>
+          <CardCatalog />
         </div>
       </template>
     </LayOut>
   </div>
 </template>
 <style>
-/* .bungkus {
+.bungkus {
   display: flex;
   width: 100%;
   height: 100vh;
@@ -25,9 +27,4 @@
 p {
   margin: 0;
 }
-.card {
-  width: 1034px;
-  height: 580px;
-  background-color: red;
-} */
 </style>
