@@ -1,6 +1,6 @@
 <template>
-  <div class="red-layout">
-    <div class="kotak">
+  <div class="layout">
+    <div class="kotak" :class="className">
       <slot name="children"></slot>
     </div>
     <router-view />
@@ -10,6 +10,7 @@
 <script>
 export default {
   name: "LayOut",
+  props: [`className`],
 };
 </script>
 
@@ -22,15 +23,21 @@ body {
   padding: 0;
   margin: 0;
 }
-.red-layout {
+.layout {
   height: 100vh;
   background-color: white;
 }
 .kotak {
   top: 0;
-  background-color: #fde2ff;
   height: 73.5%;
   margin: 0;
+}
+.women {
+  background-color: #fde2ff;
+}
+
+.men {
+  background-color: #d6e6ff;
 }
 
 /* Styles for screens larger than 480px */
@@ -39,7 +46,7 @@ body {
     font-size: 18px;
     background-color: white;
   }
-  .red-layout {
+  .layout {
     height: 100vh;
     background-color: white;
   }
@@ -54,9 +61,8 @@ body {
 @media (min-width: 768px) {
   body {
     font-size: 20px;
-    background-color: green;
   }
-  .red-layout {
+  .layout {
     height: 100vh;
     background-color: white;
   }
@@ -69,7 +75,7 @@ body {
 
 /* Styles for screens larger than 1024px */
 @media (min-width: 1024px) {
-  .red-layout {
+  .layout {
     background-color: white;
     height: 100vh;
   }

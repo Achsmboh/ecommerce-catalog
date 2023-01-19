@@ -6,30 +6,29 @@
       </div>
       <div class="item2">
         <div>
-          <h3>Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket</h3>
+          <h3 :class="`${category}-color`">{{ title }}</h3>
           <div class="category-content">
-            <p class="category">women's clothing</p>
+            <p class="category">{{ category }}'s clothing</p>
             <div class="rate">
               <p>2.9/5</p>
-              <div class="cyrcle"></div>
-              <div class="cyrcle"></div>
-              <div class="cyrcle"></div>
-              <div class="cyrcle-border"></div>
-              <div class="cyrcle-border"></div>
+              <div class="cyrcle" :class="`${category}-bg`"></div>
+              <div class="cyrcle" :class="`${category}-bg`"></div>
+              <div class="cyrcle" :class="`${category}-bg`"></div>
+              <div class="cyrcle-border" :class="`${category}-bd`"></div>
+              <div class="cyrcle-border" :class="`${category}-bd`"></div>
             </div>
           </div>
           <div class="border-description">
             <p class="description">
-              100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist /
-              Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON
+              {{ description }}
             </p>
           </div>
           <div>
-            <p class="price">$29.95</p>
+            <p class="price" :class="`${category}-color`">${{ price }}</p>
           </div>
           <div class="button">
-            <button class="button-buy">Buy Now</button>
-            <button class="button-next">Next Product</button>
+            <button class="button-buy" :class="`${category}-bg`">Buy Now</button>
+            <button class="button-next" :class="`${category}-bd ${category}-color`">Next Product</button>
           </div>
         </div>
       </div>
@@ -41,53 +40,70 @@
 <script>
 export default {
   name: "CardCatalog",
+  props: [`category`, `title`, `description`, `price`],
 };
 </script>
 <style>
+/* Inisialisasi women */
+.women-color {
+  color: #720060;
+}
+.women-bg {
+  background-color: #720060;
+}
+.women-bd {
+  border-color: #720060;
+}
+/* Inisialisasi men */
+.men-color {
+  color: #002772;
+}
+.men-bg {
+  background-color: #002772;
+}
+.men-bd {
+  border-color: #002772;
+}
+
+/* Default styles for small screens */
 .card {
-  width: 1034px;
-  height: 580px;
+  width: 20em;
+  height: 100%;
   background-color: #ffff;
-  border-radius: 10px;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  display: flex;
-  padding: 56px;
+  border-radius: 0.5em;
+  box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
+  padding: 1em;
   box-sizing: border-box;
 }
 
 .item1 {
-  width: 430px;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 img {
-  width: 301px;
+  width: 50%;
   height: auto;
   object-fit: contain;
 }
 .item2 {
-  width: 100%;
   text-align: left;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-left: 67.48px;
 }
 h3 {
-  font-size: 28px;
-  color: #720060;
+  font-size: 0.8em;
+  /* color: #720060; */
   margin: 0;
 }
 .category-content {
   display: flex;
   justify-content: space-between;
-  margin-top: 25px;
-  margin-bottom: 11px;
 }
 p .category {
-  font-size: 18px;
+  font-size: 16px;
   color: #3f3f3f;
 }
 .rate {
@@ -95,36 +111,37 @@ p .category {
   align-items: center;
 }
 .cyrcle {
-  width: 18px;
-  height: 18px;
-  background-color: #720060;
+  width: 10px;
+  height: 10px;
+  /* background-color: #720060; */
   border-radius: 50%;
-  margin-right: 2px;
-  margin-left: 2px;
+  margin-right: 0.5px;
+  margin-left: 0.5px;
 }
 .cyrcle-border {
-  width: 18px;
-  height: 18px;
+  width: 10px;
+  height: 10px;
   background-color: transparent;
-  border: 1px solid #720060;
+  border-width: 0.7em;
+  border-style: solid;
   border-radius: 50%;
-  margin-right: 2px;
-  margin-left: 2px;
+  margin-right: 0.5px;
+  margin-left: 0.5px;
 }
 .border-description {
   border-top: 1px solid #3f3f3f;
   border-bottom: 1px solid #3f3f3f;
-  padding-top: 26px;
-  padding-bottom: 50px;
+  padding-top: 13px;
+  padding-bottom: 20px;
 }
 p .description {
-  font-size: 20px;
+  font-size: 16px;
 }
 .price {
-  margin-top: 5px;
-  margin-bottom: 5px;
-  color: #720060;
-  font-size: 28px;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  /* color: #720060; */
+  font-size: 20px;
   font-weight: bold;
 }
 .button {
@@ -133,23 +150,365 @@ p .description {
 }
 .button-buy {
   border-radius: 4px;
-  width: 259px;
+  width: 150px;
   height: 42px;
-  background-color: #720060;
+  /* background-color: #720060; */
   border: none;
   color: white;
-  font-size: 20px;
+  font-size: 16px;
   margin-right: 19px;
   font-weight: bold;
 }
 .button-next {
   border-radius: 4px;
-  width: 259px;
+  width: 150px;
   height: 42px;
   background-color: transparent;
-  border: 3px solid #720060;
-  color: #720060;
-  font-size: 20px;
+  border-width: 3px;
+  border-style: solid;
+  /* color: #720060; */
+  font-size: 16px;
   font-weight: bold;
+}
+
+/* Styles for screens larger than 480px */
+@media (min-width: 480px) {
+  .card {
+    width: 400px;
+    height: 100%;
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .item1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+  }
+  .item2 {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h3 {
+    font-size: 20px;
+    /* color: #720060; */
+    margin: 0;
+  }
+  .category-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 6px;
+  }
+  p .category {
+    font-size: 16px;
+    color: #3f3f3f;
+  }
+  .rate {
+    display: flex;
+    align-items: center;
+  }
+  .cyrcle {
+    width: 14px;
+    height: 14px;
+    /* background-color: #720060; */
+    border-radius: 50%;
+    margin-right: 0.5px;
+    margin-left: 0.5px;
+  }
+  .cyrcle-border {
+    width: 14px;
+    height: 14px;
+    background-color: transparent;
+    border-width: 0.7px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-right: 0.5px;
+    margin-left: 0.5px;
+  }
+  .border-description {
+    border-top: 1px solid #3f3f3f;
+    border-bottom: 1px solid #3f3f3f;
+    padding-top: 13px;
+    padding-bottom: 20px;
+  }
+  p .description {
+    font-size: 16px;
+  }
+  .price {
+    margin-top: 2px;
+    margin-bottom: 2px;
+    /* color: #720060; */
+    font-size: 20px;
+    font-weight: bold;
+  }
+  .button {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-buy {
+    border-radius: 4px;
+    width: 150px;
+    height: 42px;
+    /* background-color: #720060; */
+    border: none;
+    color: white;
+    font-size: 16px;
+    margin-right: 19px;
+    font-weight: bold;
+  }
+  .button-next {
+    border-radius: 4px;
+    width: 150px;
+    height: 42px;
+    background-color: transparent;
+    border-width: 3px;
+    border-style: solid;
+
+    /* color: #720060; */
+    font-size: 16px;
+    font-weight: bold;
+  }
+}
+
+/* Styles for screens larger than 768px */
+@media (min-width: 768px) {
+  .card {
+    width: 700px;
+    height: 100%;
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    padding: 56px;
+    box-sizing: border-box;
+  }
+
+  .item1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 50%;
+    height: auto;
+    object-fit: contain;
+  }
+  .item2 {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  h3 {
+    font-size: 28px;
+    /* color: #720060; */
+    margin: 0;
+  }
+  .category-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 11px;
+  }
+  p .category {
+    font-size: 18px;
+    color: #3f3f3f;
+  }
+  .rate {
+    display: flex;
+    align-items: center;
+  }
+  .cyrcle {
+    width: 18px;
+    height: 18px;
+    /* background-color: #720060; */
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .cyrcle-border {
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .border-description {
+    border-top: 1px solid #3f3f3f;
+    border-bottom: 1px solid #3f3f3f;
+    padding-top: 26px;
+    padding-bottom: 50px;
+  }
+  p .description {
+    font-size: 20px;
+  }
+  .price {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* color: #720060; */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .button {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-buy {
+    border-radius: 4px;
+    width: 150px;
+    height: 42px;
+    /* background-color: #720060; */
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-right: 19px;
+    font-weight: bold;
+  }
+  .button-next {
+    border-radius: 4px;
+    width: 150px;
+    height: 42px;
+    background-color: transparent;
+    border-width: 3px;
+    border-style: solid;
+    /* color: #720060; */
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+/* Styles for screens larger than 1024px */
+@media (min-width: 1024px) {
+  .card {
+    width: 1034px;
+    height: 580px;
+    background-color: #ffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    padding: 56px;
+    box-sizing: border-box;
+  }
+
+  .item1 {
+    width: 430px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  img {
+    width: 301px;
+    height: auto;
+    object-fit: contain;
+  }
+  .item2 {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-left: 67.48px;
+  }
+  h3 {
+    font-size: 28px;
+    /* color: #720060; */
+    margin: 0;
+  }
+  .category-content {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
+    margin-bottom: 11px;
+  }
+  p .category {
+    font-size: 18px;
+    color: #3f3f3f;
+  }
+  .rate {
+    display: flex;
+    align-items: center;
+  }
+  .cyrcle {
+    width: 18px;
+    height: 18px;
+    /* background-color: #720060; */
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .cyrcle-border {
+    width: 18px;
+    height: 18px;
+    background-color: transparent;
+    border-width: 1px;
+    border-style: solid;
+    border-radius: 50%;
+    margin-right: 2px;
+    margin-left: 2px;
+  }
+  .border-description {
+    border-top: 1px solid #3f3f3f;
+    border-bottom: 1px solid #3f3f3f;
+    padding-top: 26px;
+    padding-bottom: 50px;
+  }
+  p .description {
+    font-size: 20px;
+  }
+  .price {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    /* color: #720060; */
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .button {
+    display: flex;
+    justify-content: space-between;
+  }
+  .button-buy {
+    border-radius: 4px;
+    width: 259px;
+    height: 42px;
+    /* background-color: #720060; */
+    border: none;
+    color: white;
+    font-size: 20px;
+    margin-right: 19px;
+    font-weight: bold;
+  }
+  .button-next {
+    border-radius: 4px;
+    width: 259px;
+    height: 42px;
+    background-color: transparent;
+    border-width: 3px;
+    border-style: solid;
+    /* color: #720060; */
+    font-size: 20px;
+    font-weight: bold;
+  }
 }
 </style>
