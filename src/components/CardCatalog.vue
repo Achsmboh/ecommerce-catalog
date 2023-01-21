@@ -74,6 +74,7 @@ export default {
   box-shadow: 0 0.25em 0.25em rgba(0, 0, 0, 0.25);
   padding: 1em;
   box-sizing: border-box;
+  z-index: 10;
 }
 
 .item1 {
@@ -409,6 +410,7 @@ p .description {
     display: flex;
     padding: 56px;
     box-sizing: border-box;
+    z-index: 99999;
   }
 
   .item1 {
