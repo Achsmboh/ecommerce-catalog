@@ -2,7 +2,7 @@
   <div>
     <div class="card">
       <div class="item1">
-        <img src="https://www.pngmart.com/files/1/Jacket-PNG-Clipart.png" alt="https://www.pngmart.com/files/1/Jacket-PNG-Clipart.png" />
+        <img :src="`${image}`" :alt="`${image}`" />
       </div>
       <div class="item2">
         <div>
@@ -40,7 +40,7 @@
 <script>
 export default {
   name: "CardCatalog",
-  props: [`category`, `title`, `description`, `price`],
+  props: [`category`, `title`, `description`, `price`, `image`],
 };
 </script>
 <style>

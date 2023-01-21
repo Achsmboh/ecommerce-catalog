@@ -1,10 +1,11 @@
 <template>
   <div class="about">
-    <LayOut className="men">
+    <LayOut className="women">
       <template v-slot:children>
         <div class="container">
           <CardCatalog
-            category="men"
+            image="https://www.pngmart.com/files/1/Jacket-PNG-Clipart.png"
+            category="women"
             title="Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket"
             description="100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON"
             price="29.95"
