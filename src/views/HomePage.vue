@@ -43,13 +43,12 @@ export default {
         .get(`https://fakestoreapi.com/products/${this.currentValue}`)
         .then((response) => {
           this.data = response.data;
-          console.log("data", response.data);
           if (response.data.category === `men's clothing`) {
             this.category = "men";
           } else if (response.data.category === `women's clothing`) {
             this.category = "women";
           } else {
-            this.category = "no";
+            this.category = "";
           }
         })
         .catch((error) => console.log(error))
