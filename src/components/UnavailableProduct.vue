@@ -1,6 +1,6 @@
 <template>
   <div class="layout">
-    <div class="kotak">
+    <div class="kotak-unvailable">
       <div class="container">
         <div class="card">
           <div class="muka">
@@ -153,7 +153,7 @@ body {
   background-color: white;
   overflow: hidden;
 }
-.kotak {
+.kotak-unvailable {
   top: 0;
   height: 73.5%;
   margin: 0;

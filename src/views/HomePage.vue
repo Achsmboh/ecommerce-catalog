@@ -1,27 +1,34 @@
 <template>
-  <div class="about" v-if="category === `men` || category === `women`">
-    <LayOut :className="category">
-      <template v-slot:children>
-        <div class="container">
-          <CardCatalog :image="data.image" :category="category" :title="data.title" :description="data.description" :price="data.price" :rate="data.rating.rate" :nextValue="nextValue" />
-        </div>
-      </template>
-    </LayOut>
+  <div v-if="loading">
+    <LoadingCard />
   </div>
   <div v-else>
-    <UnavailableProduct :nextValue="nextValue" />
+    <div class="about" v-if="category === `men` || category === `women`">
+      <LayOut :className="category">
+        <template v-slot:children>
+          <div class="container">
+            <CardCatalog :image="data.image" :category="category" :title="data.title" :description="data.description" :price="data.price" :rate="data.rating.rate" :nextValue="nextValue" />
+          </div>
+        </template>
+      </LayOut>
+    </div>
+    <div v-else>
+      <UnavailableProduct :nextValue="nextValue" />
+    </div>
   </div>
 </template>
 <script>
 import axios from "axios";
 import CardCatalog from "@/components/CardCatalog.vue";
 import UnavailableProduct from "@/components/UnavailableProduct.vue";
+import LoadingCard from "@/components/LoadingCard.vue";
 
 export default {
   name: "HomePage",
-  components: { CardCatalog, UnavailableProduct },
+  components: { CardCatalog, UnavailableProduct, LoadingCard },
   data() {
     return {
+      loading: false,
       data: [],
       category: "",
       currentValue: 1,
@@ -31,6 +38,7 @@ export default {
 
   methods: {
     updateAPI() {
+      this.loading = true;
       axios
         .get(`https://fakestoreapi.com/products/${this.currentValue}`)
         .then((response) => {
@@ -44,7 +52,8 @@ export default {
             this.category = "no";
           }
         })
-        .catch((error) => console.log(error));
+        .catch((error) => console.log(error))
+        .finally(() => (this.loading = false));
     },
     nextValue() {
       if (this.currentValue === this.maxValue) {
