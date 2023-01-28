@@ -194,5 +194,12 @@ body {
     margin: 1em;
     rotate: 27deg;
   }
+  .women {
+    background-color: #fde2ff;
+  }
+
+  .men {
+    background-color: #d6e6ff;
+  }
 }
 </style>
