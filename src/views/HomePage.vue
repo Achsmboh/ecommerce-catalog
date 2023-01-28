@@ -1,20 +1,67 @@
 <template>
-  <div class="about">
-    <LayOut className="men">
+  <div class="about" v-if="category === `men` || category === `women`">
+    <LayOut :className="category">
       <template v-slot:children>
         <div class="container">
-          <CardCatalog
-            image="https://www.pngmart.com/files/1/Jacket-PNG-Clipart.png"
-            category="men"
-            title="Lock and Love Women's Removable Hooded Faux Leather Moto Biker Jacket"
-            description="100% POLYURETHANE(shell) 100% POLYESTER(lining) 75% POLYESTER 25% COTTON (SWEATER), Faux leather material for style and comfort / 2 pockets of front, 2-For-One Hooded denim style faux leather jacket, Button detail on waist / Detail stitching at sides, HAND WASH ONLY / DO NOT BLEACH / LINE DRY / DO NOT IRON"
-            price="29.95"
-          />
+          <CardCatalog :image="data.image" :category="category" :title="data.title" :description="data.description" :price="data.price" :rate="data.rating.rate" :nextValue="nextValue" />
         </div>
       </template>
     </LayOut>
   </div>
+  <div v-else>
+    <UnavailableProduct :nextValue="nextValue" />
+  </div>
 </template>
+<script>
+import axios from "axios";
+import CardCatalog from "@/components/CardCatalog.vue";
+import UnavailableProduct from "@/components/UnavailableProduct.vue";
+
+export default {
+  name: "HomePage",
+  components: { CardCatalog, UnavailableProduct },
+  data() {
+    return {
+      data: [],
+      category: "",
+      currentValue: 1,
+      maxValue: 20,
+    };
+  },
+
+  methods: {
+    updateAPI() {
+      axios
+        .get(`https://fakestoreapi.com/products/${this.currentValue}`)
+        .then((response) => {
+          this.data = response.data;
+          console.log("data", response.data);
+          if (response.data.category === `men's clothing`) {
+            this.category = "men";
+          } else if (response.data.category === `women's clothing`) {
+            this.category = "women";
+          } else {
+            this.category = "no";
+          }
+        })
+        .catch((error) => console.log(error));
+    },
+    nextValue() {
+      if (this.currentValue === this.maxValue) {
+        this.currentValue = 1;
+      } else {
+        this.currentValue++;
+      }
+      this.updateAPI();
+    },
+  },
+
+  mounted() {
+    this.updateAPI();
+  },
+};
+</script>
+
 <style>
 .container {
   display: flex;
@@ -27,7 +74,6 @@
   position: absolute;
 }
 .about {
-  background-color: aquamarine;
   width: 100%;
   margin: 0;
 }
@@ -35,10 +81,3 @@ p {
   margin: 0;
 }
 </style>
-<script>
-import CardCatalog from "@/components/CardCatalog.vue";
-export default {
-  name: "HomePage",
-  components: { CardCatalog },
-};
-</script>

@@ -9,13 +9,10 @@
           <h3 :class="`${category}-color`">{{ title }}</h3>
           <div class="category-content">
             <p class="category">{{ category }}'s clothing</p>
+            <!-- input rate -->
             <div class="rate">
-              <p>2.9/5</p>
-              <div class="cyrcle" :class="`${category}-bg`"></div>
-              <div class="cyrcle" :class="`${category}-bg`"></div>
-              <div class="cyrcle" :class="`${category}-bg`"></div>
-              <div class="cyrcle-border" :class="`${category}-bd`"></div>
-              <div class="cyrcle-border" :class="`${category}-bd`"></div>
+              <p class="rating">{{ rate }}</p>
+              <div v-for="i in 5" :key="i" class="rating-circle" :class="{ [category]: i <= Math.round(rate), half: i > Math.round(rate) && i - 0.5 <= rate }"></div>
             </div>
           </div>
           <div class="border-description">
@@ -28,7 +25,7 @@
           </div>
           <div class="button">
             <button class="button-buy" :class="`${category}-bg`">Buy Now</button>
-            <button class="button-next" :class="`${category}-bd ${category}-color`">Next Product</button>
+            <button class="button-next" :class="`${category}-bd ${category}-color`" @click="nextValue">Next Product</button>
           </div>
         </div>
       </div>
@@ -40,10 +37,42 @@
 <script>
 export default {
   name: "CardCatalog",
-  props: [`category`, `title`, `description`, `price`, `image`],
+  props: [`category`, `title`, `description`, `price`, `image`, `rate`, `nextValue`],
 };
 </script>
 <style>
+.rating {
+  margin-right: 0.5em;
+}
+
+.rating-circle {
+  width: 18px;
+  height: 18px;
+  border-color: #002772;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 50%;
+  margin-right: 2px;
+  margin-left: 2px;
+}
+
+.rating-circle.men {
+  background-color: #002772;
+}
+
+.rating-circle.women {
+  background-color: #720060;
+}
+
+.rating-circle.half::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  margin: 5px;
+  border-radius: 50%;
+}
+
 /* Inisialisasi women */
 .women-color {
   color: #720060;
@@ -475,6 +504,8 @@ p .description {
     border-bottom: 1px solid #3f3f3f;
     padding-top: 26px;
     padding-bottom: 50px;
+    height: 10em;
+    overflow: auto;
   }
   p .description {
     font-size: 20px;
@@ -511,6 +542,7 @@ p .description {
     /* color: #720060; */
     font-size: 20px;
     font-weight: bold;
+    cursor: pointer;
   }
 }
 </style>

@@ -21,13 +21,21 @@
           <div class="navigasi">
             <p>This product is unavailable to show</p>
 
-            <button class="next">Next product</button>
+            <button class="next" @click="nextValue">Next product</button>
           </div>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: "UnavailableProduct",
+  props: [`nextValue`],
+};
+</script>
+
 <style>
 .muka {
   display: flex;
@@ -129,6 +137,7 @@
   font-size: 20px;
   color: #3f3f3f;
   font-weight: 600;
+  cursor: pointer;
 }
 
 /* Default styles for small screens */
@@ -198,8 +207,3 @@ body {
   }
 }
 </style>
-<script>
-export default {
-  name: "UnavailableProduct",
-};
-</script>
